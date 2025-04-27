@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+     <div class="container text-center" style="margin-top: 100px; margin-bottom: 30px;">
+        <h1><b>Welcome To The Dashboard Page , </b>{{user}}   &#128075;</h1>
+        <br>
+        <a class="btn btn-outline-primary" href="{% url 'create_record'  %}">Create Record</a>
+     </div><br><br><br>
+
+
+
+     <div class="container py-5 mb-5 text-center">
+
+      <form method="get"  action="{% url 'search' %}" class="d-flex flex-column align-items-center">
+        <div class="mb-3 w-100" style="max-width: 400px;">
+          <input type="search" name="query" class="form-control form-control-sm" placeholder="Write something here...">
+        </div>
+        <button class="btn btn-outline-primary btn-sm w-100" style="max-width: 200px;" type="submit">
+          Search
+        </button>
+      </form>
+    
+    </div>
+    
+
+
+    {% include "parts/alerts.html" %}
+
+
+     <div class="text-center container">
+
+      <table class="table table-dark">
+         <thead class="thead-light" style="border: 0.2px solid rgb(97, 44, 115);">
+           <tr class="table-primary">
+             <th scope="col">ID </th>
+             <th scope="col">First Name</th>
+             <th scope="col">Last Name</th>
+             <th scope="col">Phone Number</th>
+             <th scope="col">Category</th>
+             <th scope="col">weight</th>
+             <th scope="col">tall</th>
+             <th scope="col">address</th>
+             <th scope="col">Date</th>
+             <th>View</th>
+           </tr>
+         </thead>
+         <tbody>
+
+            {% for record in records %}
+              
+            <tr>
+               <th scope="row">{{record.id}}</th>
+               <td> {{record.first_name}}</td>
+               <td>{{record.last_name}} </td>
+               <td>{{record.phone_number}}</td>
+               <td>{{record.category}}</td>
+               <td>{{record.weight}}</td>
+               <td>{{record.tall}}</td>
+               <td>{{record.address}}</td>
+               <td>{{record.created_at}}</td>
+               <td><a class="btn btn-outline-primary" href="{% url 'view_record' record.id %}">View</a></td>
+             </tr>
+
+
+            {% endfor %}
+
+
+
+
+         </tbody>
+       </table>
+       
+     </div>
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div style="margin: 100px;" class="container bg-dark shadow-md p-5 m-6 form-layout">
+<h1>Login</h1>
+<hr>
+
+<form action="" method="POST" autocomplete="off" >
+    {% csrf_token %}
+
+    {{form|crispy}}
+
+    <input type="submit" class="btn btn-outline-primary " style="margin: 20px;" value="Login">
+</form>
+
+</div>
+  
+{% endblock content %}

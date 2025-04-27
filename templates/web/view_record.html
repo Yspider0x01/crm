@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5" style="border: 1px solid white; padding: 50px;">
+        <div class="card-header">
+            <h2 class="text-light;"style='padding:10px'  class="mb-0">Full Name : {{ record.first_name|capfirst }} {{ record.last_name|capfirst}}</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>ID:</strong> {{ record.id }}</p>
+            <p><strong>Category:</strong> {{ record.category }}</p>
+            <p><strong>Phone Number:</strong> {{ record.phone_number }}</p>
+            <p><strong>Weight:</strong> {{ record.weight }}</p>
+            <p><strong>Tall:</strong> {{ record.Tall }}</p>
+            <p><strong>Address:</strong> {{ record.address }}</p>
+            <p><strong>Date:</strong> {{ record.created_at }}</p>
+            <div>
+                <a  class="btn btn-outline-primary" href="{% url 'update_record' record.id %}">Update</a>
+                <a onclick="confirm('Are You Sure for deleting this record ? ')" class="btn btn-outline-danger" href="{% url 'delete_record' record.id %}">Delete</a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{% endblock content %}

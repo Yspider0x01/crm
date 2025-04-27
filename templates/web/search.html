@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+{% if results %}
+    {% if results %}
+    <div style="margin-top:60px ;" class="text-center container">
+    <table class="table table-dark">
+        <thead class="thead-light" style="border: 0.2px solid rgb(97, 44, 115);">
+          <tr class="table-primary">
+            <th scope="col">ID </th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Category</th>
+            <th scope="col">weight</th>
+            <th scope="col">tall</th>
+            <th scope="col">address</th>
+            <th scope="col">Date</th>
+            <th>View</th>
+          </tr>
+        {% for record in results %}
+            <tr>
+                <th scope="row">{{ record.id }}</th>
+                <td>{{ record.first_name }}</td>
+                <td>{{ record.last_name }}</td>
+                <td>{{ record.phone_number }}</td>
+                <td>{{ record.category }}</td>
+                <td>{{ record.weight }}</td>
+                <td>{{ record.tall }}</td>
+                <td>{{ record.address }}</td>
+                <td>{{ record.created_at }}</td>
+                <td><a class="btn btn-outline-primary" href="{% url 'view_record' record.id %}">View</a></td>
+            </tr>
+
+            </thead>
+            <tbody>
+            </div>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="10" class="text-center">
+                <br><br>
+                <div class="alert alert-warning" role="alert">
+                    Not Found "{{ query }}"
+                </div>
+            </td>
+        </tr>
+    {% endif %}
+{% else %}
+    <tr>
+        <td colspan="10" class="text-center">
+            <br><br>
+            <div class="alert alert-danger" role="alert">
+                Not Found "{{query}}"
+            </div>
+        </td>
+    </tr>
+{% endif %}
+
+
+{% endblock content %}
